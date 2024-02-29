@@ -22,12 +22,12 @@ export const setUserData = (payload) => ({
 
 export const addNewUserFireBaseCloud = (payload, navigate) => async (dispatch) => {
   const users = collection(db, "users");
-  console.log(users, "users users users users", payload)
+  
   try {
     await addDoc(users, payload);
     navigate("/usersPage")
   } catch (error) {
-    console.error("Error fetching songs: ", error);
+  
   }
   finally {
   

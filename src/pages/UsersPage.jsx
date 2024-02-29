@@ -19,7 +19,7 @@ const dispatch=useDispatch()
   }, [dispatch])
 
   const users= useSelector((state) => state.users);
-  console.log(users,"users")
+ 
   
   return (
     <>

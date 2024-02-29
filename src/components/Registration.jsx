@@ -17,10 +17,7 @@ export const Registration = () => {
 const dispatch= useDispatch()
 const navigate = useNavigate();
   const handleSubmit = async(e) => {
-    console.log('User Name:', email);
-    console.log('Password:', password);
-    console.log('Phone Number:', phoneNumber);
-    console.log('OTP:', otp);
+  
 
 
     e.preventDefault();
@@ -29,9 +26,9 @@ const navigate = useNavigate();
         await createUserWithEmailAndPassword(auth,email, password).then((userCredential) => {
           // Signed in 
           const user = userCredential.user;
-          console.log(user,"user data")
+       
           const payload={name:name,email:email,phoneNumber:phoneNumber}
-          console.log('payload:', payload);
+ 
           dispatch(addNewUserFireBaseCloud(payload,navigate))
 
         

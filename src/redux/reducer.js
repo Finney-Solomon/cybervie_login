@@ -25,9 +25,26 @@ import {
         };
 
       case SET_USERS_DATA:
-        return {
-          ...state,
-          users: action.payload,
+
+      const seenEmails = new Set();
+      const uniqueObjects = [];
+  
+      for (const obj of action?.payload) {
+        const email = obj.email; // Assuming 'email' is the field containing email
+        
+        // Check if the email is already in the seenEmails set
+        if (!seenEmails.has(email)) {
+          // If not, add the email to the seenEmails set
+          seenEmails.add(email);
+          
+          // And add the object to the uniqueObjects array
+          uniqueObjects.push(obj);
+        }
+      }
+      
+      return {
+        ...state,
+        users: uniqueObjects,
         };
 
       case SWITCH_TAB:
@@ -65,7 +82,7 @@ import {
           }
           case  UPDATE_SEARCH_RESULTS:
             const updateSearchResults = [...state.tabs];
-            console.log(action.payload,"payload")
+           
             updateSearchResults[action.payload.tabIndex].results=action.payload.value
             return{
               ...state,
